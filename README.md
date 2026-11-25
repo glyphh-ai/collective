@@ -8,8 +8,8 @@ A council of models for Claude. Collective is an MCP server that asks Claude, Op
 | --- | --- | --- |
 | claude | [Claude Code](https://claude.com/claude-code) `claude` | `claude` then `/login` |
 | codex | [OpenAI Codex](https://github.com/openai/codex) `codex` | `codex login` |
-| gemini | [Gemini CLI](https://github.com/google-gemini/gemini-cli) `gemini` | `gemini` and choose Sign in with Google |
-| grok | Grok CLI `grok` | follow the CLI's sign-in |
+| gemini | [Antigravity CLI](https://antigravity.google/download) `agy` | run `agy` once and sign in with Google |
+| grok | Grok CLI `grok` (`npm i -g @xai-official/grok`) | `grok login` |
 
 Collective asks only the members whose CLI is installed. Every member runs in an empty temporary folder, and Codex runs in its read-only sandbox.
 

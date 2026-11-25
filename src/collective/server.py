@@ -54,7 +54,8 @@ DEFAULTS: dict[str, Member] = {
          "--color", "never", "-o", "{out}"],
         output_file=True,
     ),
-    "gemini": Member("gemini", ["gemini", "-p"]),
+    # Google retired Gemini CLI's personal sign-in in June 2026; Antigravity CLI (agy) replaces it
+    "gemini": Member("gemini", ["agy", "--output-format", "text", "-p"]),
     "grok": Member("grok", ["grok", "-p"]),
 }
 
