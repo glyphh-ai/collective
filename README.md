@@ -21,7 +21,12 @@ claude mcp add collective --scope user -- uvx --from git+https://github.com/glyp
 
 ## Tools
 
-- `council(question, members?, rounds=1)` asks every member at once. With `rounds=2`, each member then sees the others' answers and says where it agrees, where it pushes back, and what its final answer is.
+- `council(question, members?, rounds=1, effort?)` asks every member at once. With `rounds=2`, each member then sees the others' answers and says where it agrees, where it pushes back, and what its final answer is. `effort` is `low`, `medium`, `high` or `ultracode`, and each member turns it into its own CLI's setting; without it, each CLI keeps its own default.
+
+| effort | claude | codex | gemini (agy) | grok |
+| --- | --- | --- | --- | --- |
+| low, medium, high | `--effort <size>` | `-c model_reasoning_effort=<size>` | `--effort <size>` | `--reasoning-effort <size>` |
+| ultracode | `--effort max` | `-c model_reasoning_effort=max` | `--effort xhigh` | `--reasoning-effort xhigh` |
 - `members()` lists the members and whether each CLI is installed.
 
 Members cannot see your conversation, so Claude puts the whole context into the question.
@@ -40,7 +45,13 @@ enabled = false
 [members.local]
 command = ["ollama", "run", "llama3"]
 prompt_via = "stdin"
+
+[members.local.effort]
+low = ["--think=false"]
+ultracode = ["--think=true"]
 ```
+
+A member's `effort` arguments go in before the first option of its command.
 
 The prompt goes last on the command line unless `prompt_via = "stdin"`. Each member has 300 seconds to answer, which you can change with `COLLECTIVE_TIMEOUT`.
 
